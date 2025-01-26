@@ -12,9 +12,11 @@ class CubitAuth extends CubitAbstract {
           String? fcm = await FirebaseMessaging.instance.getToken();
           Response response =
               await dio.post('login', data: {'phone': phone, 'fcmToken': fcm});
+          emit(LoginSuccessState(response.data));
+
           print(
               '******************************************************************************$fcm');
-          emit(LoginSuccessState());
+          emit(LoginSuccessState(response.data));
         },
         error: LoginErrorState(),
         load: LoginLoadingState());
@@ -25,6 +27,7 @@ class CubitAuth extends CubitAbstract {
     required String email,
     required String gender,
     required String token,
+    required String phone,
   }) async {
     await requestMain(
         isGoToLogin: false,
@@ -32,6 +35,7 @@ class CubitAuth extends CubitAbstract {
           String? fcm = await FirebaseMessaging.instance.getToken();
 
           Response response = await dio.post('signUp', data: {
+            'phone': phone,
             'email': email,
             'name': name,
             'gender': gender,
@@ -40,7 +44,7 @@ class CubitAuth extends CubitAbstract {
           emit(SignUpSuccessState());
         },
         error: SignUpErrorState(),
-        load: state);
+        load: SignUpLoadingState());
   }
 
   Future<void> checkCode(
@@ -56,5 +60,9 @@ class CubitAuth extends CubitAbstract {
         },
         error: OtpErrorState(),
         load: OtpLoadingState());
+  }
+
+  void enableButton(bool value) {
+    emit(ChangedEnableButtonState(isEnable: value));
   }
 }

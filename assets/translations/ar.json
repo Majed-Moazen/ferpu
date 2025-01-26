@@ -6,7 +6,9 @@
 "password": "كلمة المرور",
 "dont_you_have_an_account": "لا تمتلك حساب ؟ ",
  "create_one": "انشئ حساب",
- "phone": "رقم الهاتف",
+ "phone_number": "رقم الهاتف",
  "full_name": "الاسم الكامل",
- "invalid_phone": "الرقم المدخل غير صحيح"
+ "invalid_phone": "الرقم المدخل غير صحيح",
+ "enter_your_phone_number": "ادخل رقم الهاتف",
+
 }

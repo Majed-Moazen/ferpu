@@ -14,7 +14,16 @@ class SignUpErrorState extends DioErrorState {}
 
 class LoginLoadingState extends SuperState {}
 
-class LoginSuccessState extends SuperState {}
+class ChangedEnableButtonState extends SuperState {
+  bool isEnable;
+  ChangedEnableButtonState({this.isEnable = false});
+}
+
+class LoginSuccessState extends SuperState {
+  final Map<String, dynamic> response;
+
+  LoginSuccessState(this.response);
+}
 
 class LoginErrorState extends DioErrorState {}
 

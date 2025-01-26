@@ -1,4 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:ferpo/home/pages/home_screen.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -6,6 +7,7 @@ import '../../core/constants/app_strings.dart';
 import '../../core/generic_widgets/arrow_back_widget.dart';
 import '../../core/generic_widgets/custom_text_form_field/custom_text_form_field.dart';
 import '../../core/generic_widgets/main_button.dart';
+import '../../core/theme/app_colors.dart';
 import '../../core/theme/app_text_style.dart';
 import '../bloc/cubit_abstract.dart';
 import '../bloc/cubit_auth.dart';
@@ -18,6 +20,7 @@ class SignUpScreen extends StatelessWidget {
   TextEditingController genderController = TextEditingController();
   TextEditingController emailAddressController = TextEditingController();
   TextEditingController fullNameController = TextEditingController();
+  TextEditingController phoneController = TextEditingController();
   CubitAbstract cubitAbstract = CubitAbstract();
 
   @override
@@ -37,6 +40,13 @@ class SignUpScreen extends StatelessWidget {
               Text(
                 AppStrings.createAccount,
                 style: AppTextStyle.f32W700Black,
+              ),
+              SizedBox(
+                height: 16,
+              ),
+              CustomTextFormField(
+                hintText: AppStrings.phoneNumber.tr(),
+                controller: phoneController,
               ),
               SizedBox(
                 height: 16,
@@ -66,6 +76,13 @@ class SignUpScreen extends StatelessWidget {
               ),
               BlocConsumer<CubitAuth, SuperState>(
                 builder: (context, state) {
+                  if (state is SignUpLoadingState) {
+                    return Center(
+                      child: CircularProgressIndicator(
+                        color: AppColors.primaryColor,
+                      ),
+                    );
+                  }
                   return MainButton(
                     text: AppStrings.signUp.tr(),
                     onPressed: () async {
@@ -73,6 +90,7 @@ class SignUpScreen extends StatelessWidget {
                           await FirebaseMessaging.instance.getToken();
 
                       context.read<CubitAuth>().signUp(
+                          phone: phoneController.text.trim(),
                           email: emailAddressController.text,
                           gender: genderController.text,
                           name: fullNameController.text,
@@ -81,14 +99,15 @@ class SignUpScreen extends StatelessWidget {
                   );
                 },
                 listener: (BuildContext context, SuperState state) {
-                  if (state is LoginSuccessState) {
+                  if (state is SignUpSuccessState) {
                     Navigator.of(context).pushAndRemoveUntil(
                       MaterialPageRoute(
-                        builder: (context) => OtpScreen(),
+                        builder: (context) =>
+                            OtpScreen(phone: phoneController.text),
                       ),
                       (Route<dynamic> route) => false,
                     );
-                  } else if (state is LoginErrorState) {
+                  } else if (state is DioErrorState) {
                     cubitAbstract.showToast(state.errorMsg, color: Colors.red);
                   }
                 },

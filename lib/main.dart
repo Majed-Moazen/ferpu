@@ -1,4 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:ferpo/home/pages/main_screen.dart';
 import 'package:ferpo/splash/splash_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
@@ -119,7 +120,7 @@ class MyApp extends StatelessWidget {
           locale: context.locale,
           debugShowCheckedModeBanner: false,
           theme: ThemeData(fontFamily: AppConst.circularSTD),
-          home: SplashScreen()),
+          home: SizedBox()),
     );
   }
 }

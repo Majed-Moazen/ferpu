@@ -10,14 +10,13 @@ class BottomNavigationCubit extends Cubit<BottomNavigationState> {
     emit(state.copyWith(pageIndex: newPageIndex));
   }
 
-  // تحميل userId عند بدء التطبيق
   Future<void> loadUserId() async {
     emit(state.copyWith(isLoading: true));
     try {
       final prefs = await SharedPreferences.getInstance();
       final userId = prefs.getString('userId');
       if (userId != null) {
-        emit(state.copyWith(userId: userId, isLoading: false));
+        emit(state.copyWith(isLoading: false));
       } else {
         emit(state.copyWith(isLoading: false, error: "User ID not found."));
       }
