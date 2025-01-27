@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../authentication/screens/sign_in_screen.dart';
-import '../model/on_boarding_model.dart';
+import '../../features/on_boarding/model/on_boarding_model.dart';
 import 'on_boarding_state.dart';
 
 class OnBoardingCubit extends Cubit<OnBoardingState> {
@@ -39,7 +39,7 @@ class OnBoardingCubit extends Cubit<OnBoardingState> {
       );
       emit(OnBoardingPageChanged(currentPage));
     } else {
-      Navigator.pushReplacement(
+      Navigator.push(
         context,
         MaterialPageRoute(builder: (_) => SignInScreen()),
       );

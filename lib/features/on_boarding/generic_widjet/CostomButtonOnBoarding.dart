@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../../core/bloc/on_boarding_cubit.dart';
 import '../../../core/theme/app_colors.dart';
-import '../bloc/on_boarding_cubit.dart';
 
 class CustomButtonOnBoarding extends StatelessWidget {
   @override

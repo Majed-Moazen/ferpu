@@ -1,9 +1,12 @@
 {
 "get_startd":"هيا نبدأ",
 "sign_in": "تسجيل الدخول",
+"sign_up": "انشأ حساب",
 "email_address": "البريد الالكتروني" ,
 "password": "كلمة المرور",
 "dont_you_have_an_account": "لا تمتلك حساب ؟ ",
- "create_one": "انشئ حساب"
-
+ "create_one": "انشئ حساب",
+ "phone": "رقم الهاتف",
+ "full_name": "الاسم الكامل",
+ "invalid_phone": "الرقم المدخل غير صحيح"
 }

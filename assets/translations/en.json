@@ -1,9 +1,13 @@
 {
   "get_startd":"Get Started",
   "sign_in": "Sign In",
+  "sign_up": "Sign Up",
   "email_address": "Email Adress" ,
   "password": "Password",
   "dont_you_have_an_account": "Don't have an Account? ",
-  "create_one": "Create One"
+  "create_one": "Create One",
+  "phone": "Phone",
+  "full_name": "Full Name",
+  "invalid_phone": "Invalid Phone"
 
 }

@@ -1,97 +1,116 @@
-import 'package:dio/dio.dart';
 import 'package:easy_localization/easy_localization.dart';
-import 'package:ferpo/authentication/screens/otp.dart';
-import 'package:ferpo/authentication/screens/sign_up_screen.dart';
-import 'package:ferpo/features/on_boarding/bloc/cubit_auth.dart';
-import 'package:ferpo/features/on_boarding/bloc/super_state.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:ferpo/core/constants/app_images.dart';
+import 'package:ferpo/core/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
+import '../../core/bloc/cubit_auth.dart';
+import '../../core/bloc/super_state.dart';
 import '../../core/constants/app_strings.dart';
-import '../../core/generic_widgets/custom_text_form_field/custom_text_form_field.dart';
 import '../../core/generic_widgets/main_button.dart';
 import '../../core/theme/app_text_style.dart';
 
 class SignInScreen extends StatefulWidget {
-  SignInScreen({super.key});
-
   @override
   State<SignInScreen> createState() => _SignInScreenState();
 }
 
 class _SignInScreenState extends State<SignInScreen> {
-  TextEditingController emailAddressController = TextEditingController();
+  final TextEditingController phoneController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Padding(
-        padding:
-            const EdgeInsets.only(bottom: 24.0, left: 24, right: 24, top: 123),
+      appBar: AppBar(
+        leading: IconButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            icon: Icon(Icons.arrow_back_ios)),
+      ),
+      body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            SizedBox(height: 60),
+            Center(child: SvgPicture.asset(AppImages.logoSvg)),
+            SizedBox(height: 24),
+            Center(
+              child: Text(
+                AppStrings.enterYourPhoneNumber.tr(),
+                style: AppTextStyle.f24W700Black,
+              ),
+            ),
+            SizedBox(height: 50),
             Text(
-              AppStrings.signIn.tr(),
-              style: AppTextStyle.f32W700Black,
+              AppStrings.phoneNumber.tr(),
+              style: AppTextStyle.f14W400grey,
             ),
-            SizedBox(
-              height: 32,
-            ),
-            CustomTextFormField(
-              hintText: AppStrings.emailAddress.tr(),
-              controller: emailAddressController,
-            ),
-            SizedBox(
-              height: 16,
-            ),
-            BlocConsumer<CubitAuth,SuperState>(
-              builder: (context, state) {
-                return MainButton(
-                  text: AppStrings.signIn.tr(),
-                  onPressed: () async {
-                    context.read<CubitAuth>().loginNumber('', );
-
-                  },
-                );
-              }, listener: (BuildContext context, SuperState state) {
-                if(state is LoginSuccessState)
-                  {
-                    Navigator.of(context).pushAndRemoveUntil(
-                      MaterialPageRoute(
-                        builder: (context) => OtpScreen(phone:  emailAddressController.text??''),
+            TextFormField(
+              maxLength: 9,
+              controller: phoneController,
+              keyboardType: TextInputType.phone,
+              decoration: InputDecoration(
+                fillColor: Color(0xFFF3F6FB),
+                filled: true,
+                hintStyle: AppTextStyle.f14W400grey,
+                prefixIcon: Padding(
+                  padding: const EdgeInsets.only(left: 4),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      SizedBox(width: 8),
+                      SvgPicture.asset('assets/images/svg/SY.svg'),
+                      const SizedBox(width: 8),
+                      Text(
+                        AppStrings.s963,
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
-                          (Route<dynamic> route) => false,
-                    );
-                  }
-            },
-
-            ),
-            SizedBox(
-              height: 16,
-            ),
-            Row(
-              children: [
-                Text(
-                  AppStrings.dontYouHaveAnAccount.tr(),
-                  style: AppTextStyle.f12W500Black,
-                ),
-                GestureDetector(
-                  onTap: () {
-                    Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (context) => SignUpScreen(),
+                      const SizedBox(width: 8),
+                      Container(
+                        width: 1,
+                        height: 20,
+                        color: Colors.grey,
                       ),
-                    );
-                  },
-                  child: Text(
-                    AppStrings.createOne.tr(),
-                    style: AppTextStyle.f12W700Black,
+                      const SizedBox(width: 8),
+                    ],
                   ),
-                )
-              ],
-            )
+                ),
+                hintText: AppStrings.x00000000,
+                border: OutlineInputBorder(
+                  borderSide: BorderSide.none,
+                  borderRadius: BorderRadius.circular(10),
+                ),
+              ),
+              onChanged: (value) {
+                context.read<CubitAuth>().validatePhone(value);
+              },
+            ),
+            SizedBox(height: 40),
+            BlocBuilder<CubitAuth, SuperState>(
+              buildWhen: (previous, current) => current is PhoneValidationState||
+                  current is LoginSuccessState||
+                  current is LoginErrorState||
+                  current is LoginLoadingState,
+              builder: (BuildContext context, SuperState state) {
+                return MainButton(
+                  color:context.read<CubitAuth>().isValidPhone
+                      ? AppColors.enableButton
+                      : AppColors.disableButton,
+                  text: AppStrings.signIn.tr(),
+                  onPressed: context.read<CubitAuth>().isValidPhone
+                      ? () {
+                          String phone = phoneController.text.trim();
+                          context.read<CubitAuth>().login();
+                        }
+                      : null,
+                );
+              },
+            ),
           ],
         ),
       ),

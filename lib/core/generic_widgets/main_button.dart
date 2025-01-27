@@ -7,25 +7,26 @@ class MainButton extends StatelessWidget {
   MainButton(
       {this.minWidth = double.infinity,
         required this.text,
-        required this.onPressed});
+        required this.onPressed,
+        this.color = AppColors.enableButton});
 
   final double minWidth;
   final String text;
-  final Function onPressed;
+  final VoidCallback? onPressed;
+  final Color color;
 
   @override
   Widget build(BuildContext context) {
     return MaterialButton(
-      onPressed: () {
-        onPressed();
-      },
-      color: AppColors.primaryColor,
+      onPressed: onPressed
+      ,
+      color: color,
       child: Text(
         text,
-        style: AppTextStyle.f16W500White,
+        style: AppTextStyle.f16W600White,
       ),
-      minWidth: minWidth,
-      height: 50,
+      minWidth: double.infinity,
+      height: 56,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(100),
       ),

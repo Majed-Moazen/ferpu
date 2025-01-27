@@ -36,6 +36,7 @@ class ZoomableImageScreen extends StatelessWidget {
             //   color: Colors.white,
             // ),
             pageController: PageController(),
+
           ),
         ),
       ),

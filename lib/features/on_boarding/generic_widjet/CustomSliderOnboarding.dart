@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../bloc/on_boarding_cubit.dart';
-import '../bloc/on_boarding_state.dart';
+
+import '../../../core/bloc/on_boarding_cubit.dart';
+import '../../../core/bloc/on_boarding_state.dart';
+
+
 
 class CustomSliderOnboarding extends StatelessWidget {
   @override

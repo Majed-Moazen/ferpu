@@ -33,7 +33,7 @@ class ForgetPasswordScreen extends StatelessWidget {
             CustomTextFormField(
               hintText:
                   "Enter Email Address" /*AppStrings.enterEmailAddress.tr()*/,
-              controller: emailAddressController,
+              controller: emailAddressController, svgPsth: '',
             ),
             SizedBox(
               height: 24,
