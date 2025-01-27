@@ -14,14 +14,13 @@ class ArrowBackWidget extends StatelessWidget {
       },
       child: Container(
         decoration: BoxDecoration(
-          color: AppColors.primaryColor,
+          //   color: AppColors.primaryColor,
           borderRadius: BorderRadius.circular(20),
         ),
         height: 40,
         width: 40,
         alignment: Alignment.center,
-        child: SvgPicture.asset(
-            'assets/images/svg/back_arrow_icon.svg' /*AppImages.backArrowIcon*/),
+        child: SvgPicture.asset('assets/images/svg/Back Btn.svg'),
       ),
     );
   }

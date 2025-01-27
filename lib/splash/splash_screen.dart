@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
-
-
 import '../core/constants/app_const.dart';
 import '../core/constants/app_images.dart';
 import '../features/on_boarding/on_boarding_screen.dart';

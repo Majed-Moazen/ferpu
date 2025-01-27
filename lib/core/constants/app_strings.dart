@@ -6,14 +6,20 @@ class AppStrings {
   static const String password = "password";
   static const String dontYouHaveAnAccount = "dont_you_have_an_account";
   static const String createOne = "create_one";
-  static const String phone = "phone";
+  static const String phoneNumber = "phone_number";
   static const String fullName = "full_name";
   static const String invalidPhone = "invalid_phone";
+  static const String invalidOtpSend = "invalid Otp Send";
   static const String pleaseEnterPhoneNumber = "Please Enter Phone Number";
   static const String enterPhoneNumber = "Enter Phone Number";
   static const String sy = "Sy";
+  static const String continuee = "Continue";
   static const String s963 = "+963";
-  static const String baseUrl = "http://192.168.242.93:8000/api/";
+  static const String baseUrl =
+      "https://admiring-swartz.45-129-180-64.plesk.page/api/";
   static const String createAccount = "Create Account";
   static const String gender = "Gender";
+  static const String otpCode = "Otp Code";
+  static const String enterYourPhoneNumber = "enter_your_phone_number";
+  static const String x00000000 = "000 000 000";
 }

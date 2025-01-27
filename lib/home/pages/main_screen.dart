@@ -4,7 +4,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../core/generic_widgets/bottom_navigation_bar/bottom_navigation_bar_items.dart';
 import '../../core/generic_widgets/bottom_navigation_bar/cubit/bottom_navigation_cubit.dart';
 import '../../orders/pages/order_screen.dart';
-import '../../profile/pages/profile_screen.dart';
 import 'home_screen.dart';
 
 class MainScreen extends StatelessWidget {
@@ -40,7 +39,6 @@ class MainScreen extends StatelessWidget {
             HomeScreen(),
             FavoriteScreen(),
             OrderScreen(),
-            ProfileScreen(),
           ];
 
           return Scaffold(

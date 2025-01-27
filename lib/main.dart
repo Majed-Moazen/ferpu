@@ -1,4 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:ferpo/authentication/screens/sign_in_screen.dart';
 import 'package:ferpo/splash/splash_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
@@ -9,9 +10,13 @@ import 'package:get_storage/get_storage.dart';
 import 'package:permission_handler/permission_handler.dart';
 import '../firebase_options.dart';
 import 'authentication/bloc/cubit_auth.dart';
+import 'authentication/screens/otp.dart';
+import 'authentication/screens/sign_up_screen.dart';
+import 'authentication/screens/user_goal_screen.dart';
 import 'core/constants/app_const.dart';
 import 'core/generic_widgets/bottom_navigation_bar/cubit/bottom_navigation_cubit.dart';
 import 'core/generic_widgets/custom_text_form_field/bloc/text_form_field_cubit.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 void initializeNotifications() async {
   const AndroidInitializationSettings initializationSettingsAndroid =
@@ -113,13 +118,18 @@ class MyApp extends StatelessWidget {
           },
         ),
       ],
-      child: MaterialApp(
-          localizationsDelegates: context.localizationDelegates,
-          supportedLocales: context.supportedLocales,
-          locale: context.locale,
-          debugShowCheckedModeBanner: false,
-          theme: ThemeData(fontFamily: AppConst.circularSTD),
-          home: SplashScreen()),
+      child: ScreenUtilInit(
+        designSize: const Size(390, 844),
+        minTextAdapt: true,
+        splitScreenMode: true,
+        child: MaterialApp(
+            localizationsDelegates: context.localizationDelegates,
+            supportedLocales: context.supportedLocales,
+            locale: context.locale,
+            debugShowCheckedModeBanner: false,
+            theme: ThemeData(fontFamily: AppConst.circularSTD),
+            home: SplashScreen()),
+      ),
     );
   }
 }
