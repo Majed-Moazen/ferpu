@@ -1,7 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../authentication/screens/sign_in_screen.dart';
+
+import '../../features/authentication/screens/sign_in_screen.dart';
 import '../../features/on_boarding/model/on_boarding_model.dart';
 import 'on_boarding_state.dart';
 

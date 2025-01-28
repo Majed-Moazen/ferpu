@@ -2,32 +2,44 @@ import 'package:dio/dio.dart';
 import 'package:ferpo/core/bloc/super_state.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 
-import '../../core/constants/app_strings.dart';
 import 'cubit_abstract.dart';
 
 class CubitAuth extends CubitAbstract {
-  String _phone = "";
-bool isValidPhone=false;
-  void validatePhone(String phone) {
-    print(phone.length);
-    if (phone.length == 9) {
+  bool isValid = false;
+  bool isValidSignUp = false;
 
-      isValidPhone=true;
-      emit(PhoneValidationState());
+  void validatePhone(String phone) {
+    if (phone.length == 9) {
+      isValid = true;
+      emit(ValidationState());
+    } else {
+      isValid = false;
+      emit(ValidationState());
     }
-    else {
-      isValidPhone=false;
-      emit(PhoneValidationState());
+  }
+  void validateEmailAndName({required String email,required String name}) {
+    if (email.isNotEmpty&&name.isNotEmpty) {
+      isValidSignUp = true;
+      emit(ValidationState());
+    } else {
+      isValidSignUp= false;
+      emit(ValidationState());
     }
   }
 
-  Future<void> login() async {
+  Future<void> login(String phone) async {
     await requestMain(
+      isGoToLogin: false,
       request: () async {
+        print('objectpokjjklkjnkllkk');
         String? fcm = await FirebaseMessaging.instance.getToken();
+        print(fcm);
         Response response =
-            await dio.post('login', data: {'phone': _phone, 'fcmToken': fcm});
-        emit(LoginSuccessState(response.data));
+            await dio.post('login', data: {'phone': phone, 'fcmToken': fcm});
+        if (response.data['screen'] == "signUp")
+          emit(GoToSignIUp());
+        else
+          emit(GoToOtp());
       },
       error: LoginErrorState(),
       load: LoginLoadingState(),
@@ -71,7 +83,6 @@ bool isValidPhone=false;
     );
   }
 
-
   void toggleGender(bool isMale) {
     emit(ChangedGenderState(isMale: isMale));
   }
@@ -85,6 +96,7 @@ bool isValidPhone=false;
   }
 
   bool _isFormValid = false;
+
   void validateForm({
     required String name,
     required String email,

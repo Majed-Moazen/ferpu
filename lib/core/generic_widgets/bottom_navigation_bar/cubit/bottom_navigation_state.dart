@@ -4,4 +4,10 @@ class BottomNavigationState {
   final int pageIndex;
 
   BottomNavigationState({required this.pageIndex});
+
+  BottomNavigationState copyWith({int? pageIndex}) {
+    return BottomNavigationState(
+      pageIndex: pageIndex ?? this.pageIndex,
+    );
+  }
 }

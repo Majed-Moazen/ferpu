@@ -1,7 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:ferpo/core/bloc/cubit_auth.dart';
-import 'package:ferpo/core/bloc/home_cubit.dart';
-import 'package:ferpo/splash/splash_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
@@ -12,9 +10,13 @@ import 'package:get_storage/get_storage.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'core/constants/app_const.dart';
 import 'core/generic_widgets/bottom_navigation_bar/cubit/bottom_navigation_cubit.dart';
-import 'core/generic_widgets/custom_text_form_field/bloc/text_form_field_cubit.dart';
-import 'firebase_options.dart';
-import 'home/main_screen.dart';
+import 'features/home/geniric_wedjet/drop_down_home/bloc/drop_down_cubit.dart';
+import 'features/home/my_card/pages/my_ccard_screen.dart';
+import 'features/home/pages/home_screen.dart';
+import 'features/home/pages/main_screen.dart';
+import 'features/home/product_details_screen/bloc/product_details_cubit_screen.dart';
+import 'features/home/product_details_screen/product_details_screen.dart';
+import 'firbase/firebase_options.dart';
 
 void initializeNotifications() async {
   const AndroidInitializationSettings initializationSettingsAndroid =
@@ -102,12 +104,22 @@ class MyApp extends StatelessWidget {
       providers: [
         BlocProvider(
           create: (BuildContext context) {
-            return CubitHome();
+            return CubitAuth();
           },
         ),
         BlocProvider(
           create: (BuildContext context) {
-            return CubitAuth();
+            return BottomNavigationCubit();
+          },
+        ),
+        BlocProvider(
+          create: (BuildContext context) {
+            return ProductDetailsCubitScreen();
+          },
+        ),
+        BlocProvider(
+          create: (BuildContext context) {
+            return DropDownMenuCubit();
           },
         ),
       ],
@@ -121,8 +133,8 @@ class MyApp extends StatelessWidget {
             locale: Locale('en'),
             debugShowCheckedModeBanner: false,
             theme: ThemeData(fontFamily: AppConst.circularSTD),
-            home: SplashScreen()),
-            // home: MainScreen()),
+            home: MainScreeen()),
+        // home: MainScreen()),
       ),
     );
   }

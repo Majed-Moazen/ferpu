@@ -1,15 +1,21 @@
 class AppImages {
-
   /// JSON
   static const String splashImage = 'assets/images/lottie/ECommerce.json';
   static const String homeActive = 'assets/images/svg/home_active.svg';
+  static const String bagRed = 'assets/images/svg/bag_red.svg';
+  static const String notificationRed =
+      'assets/images/svg/Notification_red.svg';
   static const String homeDeActive = 'assets/images/svg/home_unactive.svg';
-  static const String notificationActive = 'assets/images/svg/notification_active.svg';
-  static const String notificationDeActive = 'assets/images/svg/notification_unactive.svg';
-  static const String vitalsActive = 'assets/images/svg/vitals_active.svg';
-  static const String vitalsDeActive = 'assets/images/svg/vitals_unactive.svg';
+  static const String notificationActive =
+      'assets/images/svg/notification_active.svg';
+  static const String notificationDeActive =
+      'assets/images/svg/notification_unactive.svg';
+  static const String vitalsActive = 'assets/images/svg/vetals_selected.svg';
+  static const String vitalsDeActive =
+      'assets/images/svg/vitals_un_selected.svg';
   static const String profileActive = 'assets/images/svg/profile_active.svg';
-  static const String profileDeActive = 'assets/images/svg/profile_unactive.svg';
+  static const String profileDeActive =
+      'assets/images/svg/profile_unactive.svg';
   static const String avatar = 'assets/images/png/avatar.png';
   static const String component = 'assets/images/png/component.png';
   // JPG
@@ -30,5 +36,4 @@ class AppImages {
   static const String dambleSvg = 'assets/images/svg/damble.svg';
   static const String fireSvg = 'assets/images/svg/fire.svg';
   static const String relaxSvg = 'assets/images/svg/relax.svg';
-
 }
