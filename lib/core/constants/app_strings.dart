@@ -5,9 +5,7 @@ class AppStrings {
   static const String password = "password";
   static const String dontYouHaveAnAccount = "dont_you_have_an_account";
   static const String createOne = "create_one";
-
   static const String signUp = "sign_up";
-
   static const String phoneNumber = "phone_number";
   static const String fullName = "full_name";
   static const String invalidPhone = "invalid_phone";
@@ -29,4 +27,25 @@ class AppStrings {
   static String products = 'products';
   static String user = 'user';
   static String token = 'token';
+  static String physicalPerformance = 'Physical Performance';
+  static String p53 = '53%';
+  static String report = 'Report';
+  static String saturday = 'Saturday, 3 Feb 2024';
+  static String vitalsSummary = 'Vitals Summary';
+  static String p48 = '4.8';
+  static String calmshirt = 'Calmshirt';
+  static String nowWearingYourSmart =
+      'You\'re now wearing your smart sweater; enjoy both comfort and style together!';
+
+  // New Strings
+  static const String heartRate = 'Heart Rate';
+  static const String bodyTemperature = 'Body Temperature';
+  static const String breathingPattern = 'Breathing Pattern';
+  static const String stressLevel = 'Stress Level';
+  static const String bpm = 'Bpm';
+  static const String celsius = '37.5 °C';
+  static const String high = 'High';
+  static const String rapid = 'Rapid';
+  static const String value162 = '162';
+  static const String verify = "Verify";
 }

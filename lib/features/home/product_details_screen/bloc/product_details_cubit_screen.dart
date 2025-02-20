@@ -9,15 +9,17 @@ class ProductDetailsCubitScreen extends Cubit<ProductDetailsScreenState> {
 
   int currentPage = 0;
 
-  // الصور حسب اللون
+  String? selectedSize; // لتخزين المقاس المحدد
+  String? selectedColor; // لتخزين اللون المحدد
+
   final Map<String, List<String>> imagesByColor = {
-    'blue': [
-      'assets/images/png/woman_black.jpg',
-      'assets/images/png/Blue T-shirt.png',
-    ],
     'white': [
       'assets/images/png/woman_white.jpg',
       'assets/images/png/White T-shirt.png',
+    ],
+    'blue': [
+      'assets/images/png/woman_black.jpg',
+      'assets/images/png/Blue T-shirt.png',
     ],
     'green': [
       'assets/images/png/woman_green.jpg',
@@ -26,8 +28,8 @@ class ProductDetailsCubitScreen extends Cubit<ProductDetailsScreenState> {
   };
 
   List<String> selectedImages = [
-    'assets/images/png/woman_black.jpg',
-    'assets/images/png/Blue T-shirt.png',
+    'assets/images/png/woman_white.jpg',
+    'assets/images/png/White T-shirt.png',
   ];
 
   void onPageChanged(int index) {
@@ -42,5 +44,10 @@ class ProductDetailsCubitScreen extends Cubit<ProductDetailsScreenState> {
       pageController.jumpToPage(0);
       emit(ColorChangedState(selectedImages));
     }
+  }
+
+  void selectSize(String size) {
+    selectedSize = size;
+    emit(SizeChangedState(size));
   }
 }

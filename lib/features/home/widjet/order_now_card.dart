@@ -4,7 +4,7 @@ import 'package:flutter_svg/svg.dart';
 
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_text_style.dart';
-import 'order_submit_button.dart';
+import '../geniric_wedjet/order_submit_button.dart';
 
 class OrderNowCard extends StatelessWidget {
   const OrderNowCard({super.key});

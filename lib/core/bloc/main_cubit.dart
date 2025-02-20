@@ -3,23 +3,22 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:permission_handler/permission_handler.dart';
 
-import 'on_boarding_state.dart';
+import '../../features/on_boarding/bloc/on_boarding_state.dart';
 
-class MainCubit extends Cubit<InitialOnBoardingState>
-{
+class MainCubit extends Cubit<InitialOnBoardingState> {
   MainCubit(super.initialState);
   void initializeNotifications() async {
     const AndroidInitializationSettings initializationSettingsAndroid =
-    AndroidInitializationSettings('@mipmap/ic_launcher');
+        AndroidInitializationSettings('@mipmap/ic_launcher');
 
     const InitializationSettings initializationSettings =
-    InitializationSettings(android: initializationSettingsAndroid);
+        InitializationSettings(android: initializationSettingsAndroid);
 
     await flutterLocalNotificationsPlugin.initialize(
       initializationSettings,
       onDidReceiveNotificationResponse: (details) {
-/// todo on press
-        },
+        /// todo on press
+      },
     );
   }
 
@@ -27,7 +26,7 @@ class MainCubit extends Cubit<InitialOnBoardingState>
     await _requestPermission();
     print(message.notification?.title);
     const AndroidNotificationDetails androidPlatformChannelSpecifics =
-    AndroidNotificationDetails(
+        AndroidNotificationDetails(
       'channel_id',
       'channel_name',
       channelDescription: 'This is the description of the channel.',
@@ -36,7 +35,7 @@ class MainCubit extends Cubit<InitialOnBoardingState>
     );
 
     const NotificationDetails platformChannelSpecifics =
-    NotificationDetails(android: androidPlatformChannelSpecifics);
+        NotificationDetails(android: androidPlatformChannelSpecifics);
 
     await flutterLocalNotificationsPlugin.show(
       0,
@@ -45,6 +44,7 @@ class MainCubit extends Cubit<InitialOnBoardingState>
       platformChannelSpecifics,
     );
   }
+
   Future<void> _requestPermission() async {
     if (await Permission.notification.isDenied) {
       await Permission.notification.request();
@@ -52,6 +52,5 @@ class MainCubit extends Cubit<InitialOnBoardingState>
   }
 
   final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
-  FlutterLocalNotificationsPlugin();
-
+      FlutterLocalNotificationsPlugin();
 }

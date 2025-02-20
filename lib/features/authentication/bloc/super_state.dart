@@ -44,7 +44,23 @@ class OtpSuccessState extends SuperState {}
 
 class OtpErrorState extends DioErrorState {}
 
+class OtpTimerState extends SuperState {
+  int sec;
+  OtpTimerState(this.sec);
+}
+
+class OtpTimerOutState extends SuperState {}
+
+class AgeUpdatedState extends SuperState {
+  final int selectedIndex;
+  final bool isAgeSelected;
+
+  AgeUpdatedState(this.selectedIndex, this.isAgeSelected);
+}
+
 class ValidationState extends SuperState {}
+
+class ChangedGoalState extends SuperState {}
 
 class OtpValidationState extends SuperState {
   final bool isValid;

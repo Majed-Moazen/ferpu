@@ -86,7 +86,7 @@ class ContainerNavBar extends StatelessWidget {
                   height: 24.h,
                   width: 24.h,
                 ),
-                label: 'vitals'.tr(),
+                label: 'Report'.tr(),
               ),
               BottomNavigationBarItem(
                 activeIcon: SvgPicture.asset(

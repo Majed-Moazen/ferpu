@@ -13,3 +13,9 @@ class ColorChangedState extends ProductDetailsScreenState {
 
   ColorChangedState(this.selectedImages);
 }
+
+class SizeChangedState extends ProductDetailsScreenState {
+  final String selectedSize;
+
+  SizeChangedState(this.selectedSize); // تخزين المقاس المحدد
+}

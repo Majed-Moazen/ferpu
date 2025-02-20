@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:ferpo/core/bloc/super_state.dart';
+import 'package:ferpo/features/authentication/bloc/super_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';

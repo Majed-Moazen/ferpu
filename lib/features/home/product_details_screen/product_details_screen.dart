@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import '../../../core/theme/app_text_style.dart';
+import '../../cart/my_cart.dart';
 import '../geniric_wedjet/order_submit_button.dart';
 import 'bloc/product_details_cubit_screen.dart';
 import 'bloc/product_details_screen_state.dart';
@@ -18,9 +19,6 @@ class ProductDetailsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final cubit = context.read<ProductDetailsCubitScreen>();
     return Scaffold(
-      // appBar: AppBar(
-      //   leading: ArrowBackWidget(),
-      // ),
       body: Column(
         children: [
           BlocBuilder<ProductDetailsCubitScreen, ProductDetailsScreenState>(
@@ -48,7 +46,7 @@ class ProductDetailsScreen extends StatelessWidget {
               );
             },
           ),
-          2.h.verticalSpace,
+          5.h.verticalSpace,
           BlocBuilder<ProductDetailsCubitScreen, ProductDetailsScreenState>(
             builder: (context, state) {
               return Row(
@@ -112,27 +110,22 @@ class ProductDetailsScreen extends StatelessWidget {
                       6.w.horizontalSpace,
                       ChoseSize(
                         text: 'X-Small',
-                        color: AppColors.sizeColor,
                       ),
                       14.w.horizontalSpace,
                       ChoseSize(
                         text: 'Small',
-                        color: AppColors.sizeColor,
                       ),
                       14.w.horizontalSpace,
                       ChoseSize(
                         text: 'Medium',
-                        color: AppColors.sizeColor,
                       ),
                       14.w.horizontalSpace,
                       ChoseSize(
                         text: 'Large',
-                        color: AppColors.sizeColor,
                       ),
                       14.w.horizontalSpace,
                       ChoseSize(
                         text: 'X-Large',
-                        color: AppColors.sizeColor,
                       ),
                     ],
                   ),
@@ -176,7 +169,7 @@ class ProductDetailsScreen extends StatelessWidget {
                       style: AppTextStyle.f12W400Subtitle,
                     ),
                   ),
-                  10.h.verticalSpace,
+                  30.h.verticalSpace,
                   Column(
                     children: [
                       DescriptionDot(
@@ -210,7 +203,12 @@ class ProductDetailsScreen extends StatelessWidget {
                           OrderSubmitButton(
                             color: AppColors.secondaryColor,
                             title: 'Add To Card',
-                            onTab: () {},
+                            onTab: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => MyCart()));
+                            },
                           ),
                         ],
                       ),

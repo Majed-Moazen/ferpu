@@ -18,4 +18,14 @@ class AppColors {
   static const Color genderColor = Color(0xFFF3F6FB);
   static const Color selectedGenderColor = Color(0xFFF3F6FB);
   static const Color unSelectedGenderColor = Color.fromARGB(120, 80, 200, 239);
+
+  static const Color textGray = Color(0xff757575);
+
+  static const Color backCart = Color(0xFFEFEFEF);
+  static const Color grayWhite = Color(0xFF838387);
+  static const Color deleteBack = Color(0xffEAC2C2);
+
+  static const Color boarderText = Color(0xFF000043);
+  static const Color boarderGoal = Color(0xFF0005B0);
+  static const Color boarderGray = Color(0xFFF0F4FD);
 }

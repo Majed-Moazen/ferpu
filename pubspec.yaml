@@ -54,6 +54,9 @@ dependencies:
   pinput: ^5.0.1
   expansion_tile_card: ^3.0.0
   flutter_slidable: ^3.1.2
+  equatable: ^2.0.7
+  flutter_gif: ^0.0.4
+  video_player: ^2.9.2
 
 
 dev_dependencies:
@@ -94,6 +97,7 @@ flutter:
     - assets/images/jpg/
     - assets/images/svg/
     - assets/translations/
+
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

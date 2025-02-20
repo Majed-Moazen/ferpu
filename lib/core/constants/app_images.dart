@@ -18,7 +18,6 @@ class AppImages {
       'assets/images/svg/profile_unactive.svg';
   static const String avatar = 'assets/images/png/avatar.png';
   static const String component = 'assets/images/png/component.png';
-  // JPG
   static const String onboardingScreen =
       'assets/images/jpg/onboarding_picture.jpg';
   // JPG
@@ -36,4 +35,20 @@ class AppImages {
   static const String dambleSvg = 'assets/images/svg/damble.svg';
   static const String fireSvg = 'assets/images/svg/fire.svg';
   static const String relaxSvg = 'assets/images/svg/relax.svg';
+  static const String progres1Svg = 'assets/images/svg/Progress.svg';
+  static const String p3435 = 'assets/images/png/3435 1.png';
+  static const String selectedStar = 'assets/images/svg/un_selected_star.svg';
+  static const String westron = 'assets/images/png/Westron.png';
+
+  // New Images
+  static const String loveSvg = 'assets/images/svg/love.svg';
+  static const String temperatureSvg = 'assets/images/svg/temperature.svg';
+  static const String reatenSvg = 'assets/images/svg/reaten.svg';
+  static const String mindSvg = 'assets/images/svg/mind.svg';
+
+  // JPG
+  static const String paypal = 'assets/images/png/paypal.png';
+  static const String masterCard = 'assets/images/png/master_card.png';
+  static const String wu = 'assets/images/png/wu.png';
+  static const String delete = 'assets/images/svg/delete.svg';
 }

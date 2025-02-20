@@ -1,8 +1,13 @@
+import 'dart:async';
+
 import 'package:dio/dio.dart';
-import 'package:ferpo/core/bloc/super_state.dart';
+import 'package:ferpo/features/authentication/bloc/super_state.dart';
+
 import 'package:firebase_messaging/firebase_messaging.dart';
 
-import 'cubit_abstract.dart';
+import '../../../core/bloc/cubit_abstract.dart';
+import '../model/goal.dart';
+import '../model/user.dart';
 
 class CubitAuth extends CubitAbstract {
   bool isValid = false;
@@ -17,12 +22,49 @@ class CubitAuth extends CubitAbstract {
       emit(ValidationState());
     }
   }
-  void validateEmailAndName({required String email,required String name}) {
-    if (email.isNotEmpty&&name.isNotEmpty) {
+
+  User user = User(
+      id: 0,
+      email: '',
+      name: '',
+      phone: '',
+      gender: '1',
+      isActive: 0,
+      goal: 0,
+      createdAt: '',
+      updatedAt: '',
+      fcmToken: '');
+
+  int _selectedIndex = 0;
+
+  bool isAgeSelected = false;
+
+  void selectAge(int index) {
+    _selectedIndex = index;
+    user.ageRange = _selectedIndex;
+    emit(AgeUpdatedState(_selectedIndex, isAgeSelected));
+  }
+
+  Timer? timer;
+  void timeOtp(int sec) {
+    timer = Timer.periodic(Duration(seconds: 1), (timer) {
+      if (sec > 0) {
+        sec = sec - 1;
+        emit(OtpTimerState(sec));
+      } else {
+        emit(OtpTimerOutState());
+
+        timer.cancel();
+      }
+    });
+  }
+
+  void validateName({required String name}) {
+    if (name.isNotEmpty) {
       isValidSignUp = true;
       emit(ValidationState());
     } else {
-      isValidSignUp= false;
+      isValidSignUp = false;
       emit(ValidationState());
     }
   }
@@ -50,6 +92,8 @@ class CubitAuth extends CubitAbstract {
     required String name,
     required String email,
     required String gender,
+    required int goal,
+    required int age_ragne,
     required String token,
     required String phone,
   }) async {
@@ -62,6 +106,8 @@ class CubitAuth extends CubitAbstract {
           'email': email,
           'name': name,
           'gender': gender,
+          'age_ragne': age_ragne,
+          'goal': goal,
           'fcmToken': fcm,
         });
         emit(SignUpSuccessState());
@@ -87,11 +133,27 @@ class CubitAuth extends CubitAbstract {
     emit(ChangedGenderState(isMale: isMale));
   }
 
+  void toggleGoal(int index) {
+    GoalModel.data
+        .map(
+          (e) => e.isSelected = false,
+        )
+        .toList();
+    print(GoalModel.data.join());
+    GoalModel.data[index].isSelected = true;
+
+    emit(ChangedGoalState());
+  }
+
+  bool activeButtonOtp = false;
+
   void validateOtp(String otp) {
     if (otp.length == 4) {
-      emit(OtpValidationState(isValid: true));
+      activeButtonOtp = true;
+      emit(ValidationState());
     } else {
-      emit(OtpValidationState(isValid: false));
+      activeButtonOtp = false;
+      emit(ValidationState());
     }
   }
 

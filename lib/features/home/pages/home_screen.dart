@@ -6,11 +6,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import '../../../core/constants/app_images.dart';
 import '../../../core/theme/app_colors.dart';
-import '../geniric_wedjet/daily_report.dart';
+import '../widjet/daily_report.dart';
 import '../geniric_wedjet/drop_down_home/pages/drop_down_menu.dart';
-import '../geniric_wedjet/home.dart';
-import '../geniric_wedjet/order_now_card.dart';
-import '../geniric_wedjet/product_details.dart';
+import '../widjet/order_now_card.dart';
+import '../widjet/product_details.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
